@@ -15,7 +15,7 @@ void UpdateEncoder(int8_t cur_page)
     if (!long_press) {
       if (hw.encoder.TimeHeldMs() > LONG_PRESS) {
         long_press = true;
-	setup_page = !setup_page;
+        setup_page = !setup_page;
       }
     }
   }
@@ -162,65 +162,65 @@ void UpdateButtons(int8_t cur_page)
   {
     case 0:
       if(hw.button1.RisingEdge()) {
-	eq.push_event(eq.INCR_GRAIN_ENV, 0);
+        eq.push_event(eq.INCR_GRAIN_ENV, 0);
       }
       if(hw.button2.RisingEdge()) {
-	eq.push_event(eq.RST_PITCH_SCAN, 0);
+        eq.push_event(eq.RST_PITCH_SCAN, 0);
       }
       break;
     case 1:
       if(hw.button1.RisingEdge()) {
-	eq.push_event(eq.TOG_GRAIN_REV, 0);
+        eq.push_event(eq.TOG_GRAIN_REV, 0);
       }
       if(hw.button2.RisingEdge()) {
-	eq.push_event(eq.TOG_SCAN_REV, 0);
+        eq.push_event(eq.TOG_SCAN_REV, 0);
       }
       break;
     case 2:
       if(hw.button1.RisingEdge()) {
-	eq.push_event(eq.TOG_SCAT, 0);
+        eq.push_event(eq.TOG_SCAT, 0);
       }
       if(hw.button2.RisingEdge()) {
-	eq.push_event(eq.TOG_FREEZE, 0);
+        eq.push_event(eq.TOG_FREEZE, 0);
       }
       break;
     case 3:
       if(hw.button1.RisingEdge()) {
-	eq.push_event(eq.TOG_RND_PITCH, 0);
+        eq.push_event(eq.TOG_RND_PITCH, 0);
       }
       if(hw.button2.RisingEdge()) {
-	eq.push_event(eq.TOG_RND_DENS, 0);
+        eq.push_event(eq.TOG_RND_DENS, 0);
       }
       break;
     case 4:
       if(hw.button1.RisingEdge()) {
-	eq.push_event(eq.LIVE_REC, 0);
+        eq.push_event(eq.LIVE_REC, 0);
       }
       if(hw.button2.RisingEdge()) {
-	eq.push_event(eq.LIVE_PLAY, 0);
+        eq.push_event(eq.LIVE_PLAY, 0);
       }
       break;
     case 5:
       if(hw.button1.RisingEdge()) {
-	eq.push_event(eq.TOG_LOOP, 0);
+        eq.push_event(eq.TOG_LOOP, 0);
       }
       break;
     case 6:
       if(hw.button1.RisingEdge()) {
-	eq.push_event(eq.TOG_RND_PAN, 0);
+        eq.push_event(eq.TOG_RND_PAN, 0);
       }
       break;
     case 7:
       if(hw.button1.RisingEdge()) {
-	eq.push_event(eq.TOG_GATE, 0);
+        eq.push_event(eq.TOG_GATE, 0);
       }
       if(hw.button2.RisingEdge()) {
-	eq.push_event(eq.TOG_RETRIG, 0);
+        eq.push_event(eq.TOG_RETRIG, 0);
       }
       break;
     case 8:
       if(hw.button1.RisingEdge()) {
-	eq.push_event(eq.TOG_NOTE, 0);
+        eq.push_event(eq.TOG_NOTE, 0);
       }
       break;
     default:

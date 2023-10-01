@@ -87,7 +87,7 @@ class Phasor
     void SetLoop(bool l)
     {
       if (l != loop_) {
-	ToggleLoop();
+        ToggleLoop();
       }
     }
 
@@ -107,7 +107,7 @@ class Phasor
     void SetReverse(bool r)
     {
       if (r != reverse_) {
-	ToggleReverse();
+        ToggleReverse();
       }
     }
 
@@ -115,9 +115,9 @@ class Phasor
     {
       reverse_ = reverse_ ? false : true;
       if (reverse_) {
-	cur_pos_ = end_pos_;
+        cur_pos_ = end_pos_;
       } else {
-	cur_pos_ = start_pos_;
+        cur_pos_ = start_pos_;
       }
       play_ = true;
     }
@@ -131,32 +131,32 @@ class Phasor
     {
       *eot = false;
       if (play_) {
-	if (reverse_) {
+        if (reverse_) {
       	  cur_pos_ -= phase_incr_;
       	  if (cur_pos_ < start_pos_) {
-	    *eot = true;
-	    if (ping_pong_) {
-	      cur_pos_ += phase_incr_;
-	      reverse_ = false;
-	    } else if (loop_) {
-      	      cur_pos_ += (end_pos_ - start_pos_);
-      	    } else {
-	      play_ = false;
-	    }
+            *eot = true;
+            if (ping_pong_) {
+              cur_pos_ += phase_incr_;
+              reverse_ = false;
+            } else if (loop_) {
+                cur_pos_ += (end_pos_ - start_pos_);
+            } else {
+              play_ = false;
+            }
       	  }
       	} else {
       	  cur_pos_ += phase_incr_;
-	  // is it >= or just > ?
+          // is it >= or just > ?
       	  if (cur_pos_ >= end_pos_) {
-	    *eot = true;
-	    if (ping_pong_) {
-	      cur_pos_ -= phase_incr_;
-	      reverse_ = true;
-	    } else if (loop_) {
+            *eot = true;
+            if (ping_pong_) {
+              cur_pos_ -= phase_incr_;
+              reverse_ = true;
+            } else if (loop_) {
       	      cur_pos_ -= (end_pos_ - start_pos_);
       	    } else {
-	      play_ = false;
-	    }
+              play_ = false;
+            }
       	  }
       	} 
       } 

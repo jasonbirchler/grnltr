@@ -3,10 +3,10 @@ BUILD_TARGET ?= pod
 
 # Sources
 CPP_SOURCES = grnltr.cpp windows.cpp 
+BLUEMCHEN_DIR = ./kxmx_bluemchen
 
 ifeq "$(BUILD_TARGET)" "bluemchen"
 TARGET = grnltr_bluemchen
-BLUEMCHEN_DIR = ./kxmx_bluemchen
 CPP_SOURCES += $(BLUEMCHEN_DIR)/src/kxmx_bluemchen.cpp bluemchen.cpp
 endif
 
@@ -16,8 +16,8 @@ CPP_SOURCES += pod.cpp
 endif
 
 # Library Locations
-LIBDAISY_DIR = ../../libDaisy
-DAISYSP_DIR = ../../DaisySP
+LIBDAISY_DIR = $(BLUEMCHEN_DIR)/libDaisy
+DAISYSP_DIR = $(BLUEMCHEN_DIR)/DaisySP
 
 # Includes FatFS source files within project.
 USE_FATFS = 1

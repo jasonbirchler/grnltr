@@ -28,7 +28,7 @@ class Sample : public Phasor
       float sf, sample;
     
       if (play_) {
-	idx0 = (size_t)cur_pos_;
+        idx0 = (size_t)cur_pos_;
       	if (reverse_) {
       	  idx1 = (idx0 == start_pos_) ? end_pos_ : idx0 - 1;
       	} else {
@@ -53,7 +53,7 @@ class Sample : public Phasor
       	}
      
       } else {
-	sample = 0.0f;
+        sample = 0.0f;
       }
 
       Phasor::Process(eot);

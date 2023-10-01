@@ -16,15 +16,15 @@ int8_t next_dir;
 
 
 page_t pages[NUM_PAGES] = { 
-  {"RED",     "grain env",  "rst pitch",  eq.INCR_GRAIN_ENV,  eq.RST_PITCH_SCAN},  /* k1 = Grain Pitch	    k2 = Scan Rate*	*/
-  {"ORANGE",  "grain rev",  "scan rev",	  eq.TOG_GRAIN_REV,   eq.TOG_SCAN_REV},	   /* k1 = Grain Duration   k2 = Grain Density	*/
-  {"YELLOW",  "scatter",    "freeze",	  eq.TOG_SCAT,	      eq.TOG_FREEZE},	   /* k1 = Scatter Distance			*/
-  {"GREEN",   "rnd pitch",  "rnd dens",	  eq.TOG_RND_PITCH,   eq.TOG_RND_DENS},    /* k1 = Pitch Distance			*/
-  {"BLUE",    "live rec",   "play rec",	  eq.LIVE_REC,	      eq.LIVE_PLAY},       /* k1 = Sample Start*    k2 = Sample End*	*/
-  {"PURPLE",  "",	    "",		  eq.NONE,	      eq.NONE},            /* k1 = Bit Crush	    k2 = Downsample	*/
-  {"VIOLET",  "rnd pan",    "",		  eq.TOG_RND_PAN,     eq.NONE},            /* k1 = pan		    k2 = pan dist	*/
-  {"ROSE",    "gate",	    "retrig",	  eq.TOG_GATE,	      eq.TOG_RETRIG},      /* k1 = delay mix	    k2 = delay time	*/
-  {"LGREEN",  "note",	    "loop",	  eq.TOG_NOTE,	      eq.TOG_LOOP}         /* k1 = delay fbk	    k2 = delay xst  	*/
+  {"P1",     "grain env",  "rst pitch",  eq.INCR_GRAIN_ENV,  eq.RST_PITCH_SCAN},  /* k1 = Grain Pitch	    k2 = Scan Rate*	*/
+  {"P2",  "grain rev",  "scan rev",	  eq.TOG_GRAIN_REV,   eq.TOG_SCAN_REV},	   /* k1 = Grain Duration   k2 = Grain Density	*/
+  {"P3",  "scatter",    "freeze",	  eq.TOG_SCAT,	      eq.TOG_FREEZE},	   /* k1 = Scatter Distance			*/
+  {"P4",   "rnd pitch",  "rnd dens",	  eq.TOG_RND_PITCH,   eq.TOG_RND_DENS},    /* k1 = Pitch Distance			*/
+  {"P5",    "live rec",   "play rec",	  eq.LIVE_REC,	      eq.LIVE_PLAY},       /* k1 = Sample Start*    k2 = Sample End*	*/
+  {"P6",  "crush",	    "dwn smpl",		  eq.NONE,	      eq.NONE},            /* k1 = Bit Crush	    k2 = Downsample	*/
+  {"P7",  "rnd pan",    "",		  eq.TOG_RND_PAN,     eq.NONE},            /* k1 = pan		    k2 = pan dist	*/
+  {"P8",    "gate",	    "retrig",	  eq.TOG_GATE,	      eq.TOG_RETRIG},      /* k1 = delay mix	    k2 = delay time	*/
+  {"P9",  "note",	    "loop",	  eq.TOG_NOTE,	      eq.TOG_LOOP}         /* k1 = delay fbk	    k2 = delay xst  	*/
 };
 
 page_t setup = {"SETUP", "midi", "browse", eq.INCR_MIDI, eq.NONE};
@@ -58,19 +58,19 @@ void UpdateEncoder(int8_t cur_page)
       extra_long_press = false;
     } else {
       if (browse) {
-	browse = false;
-	if (next_dir != cur_dir) {
-	  eq.push_event(eq.NEXT_DIR, next_dir);
-	}
+        browse = false;
+        if (next_dir != cur_dir) {
+          eq.push_event(eq.NEXT_DIR, next_dir);
+        }
       } else if (setup_page) {
-	if (cur_param) {
-	  browse = true;
-	  next_dir = cur_dir;
-	} else {
-	  eq.push_event(setup.events[cur_param], 0);
-	}
+        if (cur_param) {
+          browse = true;
+          next_dir = cur_dir;
+        } else {
+          eq.push_event(setup.events[cur_param], 0);
+        }
       } else if (param_select) {
-	eq.push_event(pages[cur_page].events[cur_param], 0);
+        eq.push_event(pages[cur_page].events[cur_param], 0);
       } else {
         eq.push_event(eq.INCR_WAV, 0);
       }
@@ -119,14 +119,14 @@ void UpdateUI(int8_t cur_page)
       strncpy(disp, &dir_names[dir_idx][0], MAX_STRING);
       hw.display.WriteString(disp, Font_6x8, false);
       if (++dir_idx < dir_count) {
-	hw.display.SetCursor(0, 10);
-	strncpy(disp, &dir_names[dir_idx][0], MAX_STRING);
+        hw.display.SetCursor(0, 10);
+        strncpy(disp, &dir_names[dir_idx][0], MAX_STRING);
       	hw.display.WriteString(disp, Font_6x8, true);
-	if (++dir_idx < dir_count) {
-	  hw.display.SetCursor(0, 20);
-	  strncpy(disp, &dir_names[dir_idx][0], MAX_STRING);
-      	  hw.display.WriteString(disp, Font_6x8, true);
-	}
+        if (++dir_idx < dir_count) {
+          hw.display.SetCursor(0, 20);
+          strncpy(disp, &dir_names[dir_idx][0], MAX_STRING);
+          hw.display.WriteString(disp, Font_6x8, true);
+        }
       }
     } else {
       hw.display.SetCursor(0, 0);
